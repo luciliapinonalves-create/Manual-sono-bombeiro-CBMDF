@@ -1,0 +1,1340 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Manual Interativo: Sono e Desempenho Tático (CECAF)</title>
+  <meta name="description" content="Manual interativo para bombeiros militares: higiene do sono, cochilos estratégicos, adaptação do treino e técnicas de respiração/relaxamento." />
+  <style>
+    :root{
+      --bg:#0b1020;
+      --panel:#111a33;
+      --panel2:#0f1730;
+      --text:#e8ecff;
+      --muted:#b8c1ff;
+      --accent:#7dd3fc;
+      --accent2:#a78bfa;
+      --warn:#fbbf24;
+      --danger:#fb7185;
+      --ok:#86efac;
+      --line:rgba(255,255,255,.08);
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
+      background: radial-gradient(1200px 700px at 20% 0%, rgba(167,139,250,.18), transparent 55%),
+                  radial-gradient(900px 600px at 80% 10%, rgba(125,211,252,.18), transparent 60%),
+                  linear-gradient(180deg, var(--bg), #060914);
+      color:var(--text);
+      line-height:1.35;
+    }
+    header{
+      position:sticky; top:0; z-index:10;
+      backdrop-filter: blur(10px);
+      background: rgba(11,16,32,.65);
+      border-bottom:1px solid var(--line);
+    }
+    .wrap{max-width:1100px; margin:0 auto; padding:18px 18px}
+    .top{
+      display:flex; gap:14px; align-items:center; justify-content:space-between; flex-wrap:wrap;
+    }
+    .brand{
+      display:flex; gap:12px; align-items:center;
+    }
+    .badge{
+      width:44px; height:44px; border-radius:14px;
+      background: linear-gradient(135deg, rgba(125,211,252,.25), rgba(167,139,250,.25));
+      border:1px solid var(--line);
+      box-shadow: var(--shadow);
+      display:grid; place-items:center;
+      font-weight:800;
+      letter-spacing:.5px;
+    }
+    .title h1{margin:0; font-size:16px; letter-spacing:.2px}
+    .title p{margin:3px 0 0; color:var(--muted); font-size:12px}
+    .tools{
+      display:flex; gap:10px; align-items:center; flex-wrap:wrap;
+    }
+    button, .btn{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      color:var(--text);
+      padding:10px 12px;
+      border-radius:14px;
+      cursor:pointer;
+      box-shadow: 0 6px 18px rgba(0,0,0,.25);
+      transition: transform .06s ease, background .2s ease, border-color .2s ease;
+      font-weight:600;
+      font-size:13px;
+    }
+    button:hover, .btn:hover{background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.16)}
+    button:active, .btn:active{transform: translateY(1px)}
+    .pill{
+      display:inline-flex; gap:8px; align-items:center;
+      padding:8px 10px; border-radius:999px;
+      border:1px solid var(--line);
+      color:var(--muted);
+      background: rgba(255,255,255,.03);
+      font-size:12px;
+      user-select:none;
+    }
+    main{padding:18px}
+    .grid{
+      max-width:1100px; margin:0 auto;
+      display:grid; grid-template-columns: 290px 1fr;
+      gap:18px;
+    }
+    nav{
+      background: rgba(17,26,51,.55);
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .navhead{
+      padding:14px 14px 10px;
+      border-bottom:1px solid var(--line);
+    }
+    .navhead .kicker{color:var(--muted); font-size:12px}
+    .navhead .big{font-size:14px; margin-top:6px; font-weight:800}
+    .navlist{padding:10px}
+    .navitem{
+      width:100%;
+      text-align:left;
+      display:flex; align-items:center; gap:10px;
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid transparent;
+      background: transparent;
+      box-shadow:none;
+      color:var(--text);
+      font-weight:700;
+    }
+    .navitem small{color:var(--muted); font-weight:600}
+    .navitem.active{
+      background: rgba(125,211,252,.10);
+      border-color: rgba(125,211,252,.25);
+    }
+    .navicon{
+      width:28px; height:28px; border-radius:10px;
+      display:grid; place-items:center;
+      background: rgba(255,255,255,.04);
+      border:1px solid var(--line);
+      flex:0 0 auto;
+    }
+    .content{
+      min-height: 70vh;
+      background: rgba(17,26,51,.45);
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .section{
+      display:none;
+      padding:18px;
+    }
+    .section.active{display:block}
+    .h2{
+      font-size:18px; font-weight:900; margin:0 0 10px;
+    }
+    .lead{
+      margin:0 0 14px;
+      color:var(--muted);
+      font-size:13.5px;
+    }
+    .cards{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap:14px;
+    }
+    .card{
+      grid-column: span 12;
+      background: rgba(15,23,48,.75);
+      border:1px solid var(--line);
+      border-radius: 18px;
+      padding:14px;
+      box-shadow: 0 12px 28px rgba(0,0,0,.22);
+    }
+    .card h3{margin:0 0 8px; font-size:14px}
+    .card p{margin:0; color:var(--muted); font-size:13px}
+    .two{grid-column: span 6}
+    .three{grid-column: span 4}
+    @media (max-width: 920px){
+      .grid{grid-template-columns: 1fr}
+      nav{order:2}
+      .content{order:1}
+      .two{grid-column: span 12}
+      .three{grid-column: span 12}
+    }
+    .row{display:flex; gap:10px; flex-wrap:wrap; align-items:center}
+    label{font-size:12px; color:var(--muted); display:block; margin-bottom:6px; font-weight:700}
+    input, select, textarea{
+      width:100%;
+      background: rgba(255,255,255,.04);
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:10px 12px;
+      color:var(--text);
+      outline:none;
+      font-size:13px;
+    }
+    textarea{min-height:100px; resize:vertical}
+    .mini{font-size:12px; color:var(--muted)}
+    .hr{height:1px; background:var(--line); margin:14px 0}
+    .tag{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:7px 10px; border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      color:var(--muted);
+      font-size:12px; font-weight:700;
+    }
+    .tag.ok{border-color: rgba(134,239,172,.25); background: rgba(134,239,172,.08); color: #d7ffe6}
+    .tag.warn{border-color: rgba(251,191,36,.25); background: rgba(251,191,36,.10); color: #fff4d6}
+    .tag.danger{border-color: rgba(251,113,133,.25); background: rgba(251,113,133,.10); color: #ffe1e7}
+    .kpi{
+      display:grid; grid-template-columns: repeat(3,1fr); gap:12px;
+    }
+    .kpi .box{
+      padding:12px; border-radius:16px;
+      background: rgba(255,255,255,.03);
+      border:1px solid var(--line);
+    }
+    .kpi .num{font-size:20px; font-weight:950}
+    .kpi .lbl{font-size:12px; color:var(--muted); font-weight:700}
+    .list{
+      margin:0; padding-left:18px; color:var(--muted); font-size:13px;
+    }
+    .notice{
+      border-left:4px solid rgba(125,211,252,.6);
+      background: rgba(125,211,252,.08);
+      padding:12px 12px;
+      border-radius:14px;
+      color:var(--text);
+      margin:12px 0;
+      font-size:13px;
+    }
+    .notice strong{color:#fff}
+    .foot{
+      margin-top:18px;
+      color:var(--muted);
+      font-size:12px;
+    }
+    .timer{
+      display:flex; gap:10px; align-items:center; flex-wrap:wrap;
+      margin-top:10px;
+    }
+    .timebig{
+      font-size:28px; font-weight:950; letter-spacing:.5px;
+      padding:10px 12px; border-radius:16px;
+      background: rgba(255,255,255,.03);
+      border:1px solid var(--line);
+      min-width:160px;
+      text-align:center;
+    }
+    .table{
+      width:100%;
+      border-collapse: collapse;
+      overflow:hidden;
+      border-radius: 14px;
+      border:1px solid var(--line);
+    }
+    .table th,.table td{
+      padding:10px 10px;
+      border-bottom:1px solid var(--line);
+      font-size:12.5px;
+      color:var(--muted);
+      text-align:left;
+    }
+    .table th{color:var(--text); font-weight:900; background: rgba(255,255,255,.03)}
+    .table tr:last-child td{border-bottom:none}
+    .nowrap{white-space:nowrap}
+    .muted{color:var(--muted)}
+  </style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="top">
+      <div class="brand">
+        <div class="badge">Zz</div>
+        <div class="title">
+          <h1>Manual Interativo: Sono e Desempenho Tático</h1>
+          <p>CECAF, bombeiro militar, prontidão com recuperação inteligente</p>
+        </div>
+      </div>
+      <div class="tools">
+        <span class="pill" id="saveStatePill">Salvo automaticamente</span>
+        <button id="btnExport">Exportar dados (CSV)</button>
+        <button id="btnReset">Limpar tudo</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="grid">
+    <nav>
+      <div class="navhead">
+        <div class="kicker">Navegação</div>
+        <div class="big">Escolha uma seção</div>
+      </div>
+      <div class="navlist">
+        <button class="navitem active" data-target="sec_inicio"><span class="navicon">🏁</span><div><div>Início</div><small>como usar</small></div></button>
+        <button class="navitem" data-target="sec_auto"><span class="navicon">🧠</span><div><div>Autoavaliação</div><small>risco de fadiga</small></div></button>
+        <button class="navitem" data-target="sec_higiene"><span class="navicon">🌙</span><div><div>Higiene do sono</div><small>rotina prática</small></div></button>
+        <button class="navitem" data-target="sec_cochilo"><span class="navicon">🕒</span><div><div>Cochilos estratégicos</div><small>15 a 30 min</small></div></button>
+        <button class="navitem" data-target="sec_treino"><span class="navicon">🏋️</span><div><div>Treino quando dormiu mal</div><small>decisão rápida</small></div></button>
+        <button class="navitem" data-target="sec_respiro"><span class="navicon">🫁</span><div><div>Respiração e relaxamento</div><small>2 a 10 min</small></div></button>
+        <button class="navitem" data-target="sec_cafeina"><span class="navicon">☕</span><div><div>Cafeína</div><small>uso inteligente</small></div></button>
+        <button class="navitem" data-target="sec_log"><span class="navicon">📒</span><div><div>Diário de 7 dias</div><small>registro simples</small></div></button>
+        <button class="navitem" data-target="sec_instrutor"><span class="navicon">🎓</span><div><div>Para instrutores</div><small>CECAF</small></div></button>
+      </div>
+    </nav>
+
+    <section class="content">
+      <!-- INÍCIO -->
+      <div class="section active" id="sec_inicio">
+        <div class="h2">O objetivo</div>
+        <p class="lead">
+          Este manual traduz o tema “sono e desempenho” em ferramentas práticas para o bombeiro militar e para o CECAF.
+          Você vai encontrar checklists, calculadoras rápidas e protocolos curtos que cabem na rotina de plantão.
+        </p>
+
+        <div class="cards">
+          <div class="card two">
+            <h3>Como usar no dia a dia</h3>
+            <ul class="list">
+              <li>Antes do serviço, use a Autoavaliação para estimar risco de fadiga.</li>
+              <li>Se o risco estiver alto, aplique: cochilo estratégico, treino adaptado e protocolo rápido de respiração.</li>
+              <li>Registre 7 dias no Diário para identificar padrão e ajustar hábitos.</li>
+            </ul>
+            <div class="notice">
+              <strong>Regra de ouro:</strong> sono é um multiplicador de performance e de segurança. Tratar fadiga como “normal” é receita para erro operacional.
+            </div>
+          </div>
+
+          <div class="card two">
+            <h3>O que este manual cobre</h3>
+            <div class="row" style="margin-top:8px">
+              <span class="tag">Higiene do sono</span>
+              <span class="tag">Cochilos estratégicos</span>
+              <span class="tag">Adaptação do treino</span>
+              <span class="tag">Respiração e relaxamento</span>
+              <span class="tag">Cafeína</span>
+              <span class="tag">Diário de 7 dias</span>
+            </div>
+            <p class="foot">
+              Observação: este material é educativo e não substitui avaliação médica. Em sintomas persistentes, procure o serviço de saúde.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Atalho de decisão, versão plantão</h3>
+            <div class="kpi">
+              <div class="box">
+                <div class="num">≥ 7h</div>
+                <div class="lbl">Sinal verde: treino normal</div>
+              </div>
+              <div class="box">
+                <div class="num">5h a 6h59</div>
+                <div class="lbl">Sinal amarelo: reduzir volume ou intensidade</div>
+              </div>
+              <div class="box">
+                <div class="num">&lt; 5h</div>
+                <div class="lbl">Sinal vermelho: técnica, mobilidade, recuperação</div>
+              </div>
+            </div>
+            <p class="mini" style="margin-top:10px">
+              O corte é didático. O risco real depende também de fragmentação do sono, estresse, dor e carga de serviço.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- AUTOAVALIAÇÃO -->
+      <div class="section" id="sec_auto">
+        <div class="h2">Autoavaliação de fadiga</div>
+        <p class="lead">
+          Preencha em 45 segundos. O resultado sugere conduta prática e adaptações de treino e recuperação.
+        </p>
+
+        <div class="cards">
+          <div class="card two">
+            <h3>Dados do último sono</h3>
+            <div class="row">
+              <div style="flex:1; min-width:180px">
+                <label for="sleepHours">Horas totais (últimas 24h)</label>
+                <input id="sleepHours" type="number" min="0" max="12" step="0.25" placeholder="Ex.: 5.5" />
+              </div>
+              <div style="flex:1; min-width:180px">
+                <label for="wakeCount">Acordou quantas vezes?</label>
+                <input id="wakeCount" type="number" min="0" max="20" step="1" placeholder="Ex.: 3" />
+              </div>
+            </div>
+            <div class="row" style="margin-top:10px">
+              <div style="flex:1; min-width:180px">
+                <label for="dayDemand">Demanda do serviço hoje</label>
+                <select id="dayDemand">
+                  <option value="0">Baixa</option>
+                  <option value="1">Média</option>
+                  <option value="2">Alta</option>
+                </select>
+              </div>
+              <div style="flex:1; min-width:180px">
+                <label for="pain">Dor muscular ou articular</label>
+                <select id="pain">
+                  <option value="0">Nenhuma</option>
+                  <option value="1">Leve</option>
+                  <option value="2">Moderada ou alta</option>
+                </select>
+              </div>
+            </div>
+            <div class="row" style="margin-top:10px">
+              <div style="flex:1; min-width:180px">
+                <label for="stress">Estresse percebido</label>
+                <select id="stress">
+                  <option value="0">Baixo</option>
+                  <option value="1">Médio</option>
+                  <option value="2">Alto</option>
+                </select>
+              </div>
+              <div style="flex:1; min-width:180px">
+                <label for="caffeineLate">Cafeína nas últimas 6h antes de dormir</label>
+                <select id="caffeineLate">
+                  <option value="0">Não</option>
+                  <option value="1">Sim</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+            <button id="btnScore">Calcular risco</button>
+            <div id="scoreOut" style="margin-top:12px"></div>
+          </div>
+
+          <div class="card two">
+            <h3>Interpretação rápida</h3>
+            <div class="notice">
+              <strong>Baixo risco</strong>: treino normal, manter rotina de sono.
+            </div>
+            <div class="notice" style="border-left-color: rgba(251,191,36,.7); background: rgba(251,191,36,.10)">
+              <strong>Risco moderado</strong>: reduzir volume ou intensidade, priorizar técnica e mobilidade, considerar cochilo curto.
+            </div>
+            <div class="notice" style="border-left-color: rgba(251,113,133,.7); background: rgba(251,113,133,.10)">
+              <strong>Alto risco</strong>: foco em recuperação, evitar treino pesado, atenção redobrada em tarefas críticas e direção.
+            </div>
+            <p class="mini">
+              Nota: esta escala é um instrumento educativo, inspirado em práticas de gestão de fadiga. Ajuste conforme protocolos internos e orientação dos instrutores.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- HIGIENE -->
+      <div class="section" id="sec_higiene">
+        <div class="h2">Higiene do sono, versão aplicável</div>
+        <p class="lead">A ideia não é “perfeição”, é aumentar eficiência do sono no mundo real do plantão.</p>
+
+        <div class="cards">
+          <div class="card three">
+            <h3>Ambiente</h3>
+            <ul class="list">
+              <li>Escuro: máscara ocular ajuda em alojamento coletivo.</li>
+              <li>Silêncio: tampões auriculares, se tolerados.</li>
+              <li>Temperatura: mais fresco tende a facilitar o sono.</li>
+            </ul>
+          </div>
+          <div class="card three">
+            <h3>Rotina 20 minutos</h3>
+            <ul class="list">
+              <li>Banho morno ou lavagem de rosto.</li>
+              <li>Luz baixa, telas no mínimo.</li>
+              <li>Respiração guiada de 2 a 5 minutos.</li>
+            </ul>
+          </div>
+          <div class="card three">
+            <h3>Alimentação e estímulos</h3>
+            <ul class="list">
+              <li>Evitar refeição pesada muito perto de deitar.</li>
+              <li>Evitar cafeína nas 6 horas antes do sono.</li>
+              <li>Álcool pode piorar qualidade do sono.</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>Checklist de deitar (marque e salve)</h3>
+            <div class="row" style="margin-top:8px">
+              <label class="tag"><input type="checkbox" class="ck" data-key="ck_dark" /> Ambiente escuro</label>
+              <label class="tag"><input type="checkbox" class="ck" data-key="ck_quiet" /> Ruído reduzido</label>
+              <label class="tag"><input type="checkbox" class="ck" data-key="ck_phone" /> Celular longe do rosto</label>
+              <label class="tag"><input type="checkbox" class="ck" data-key="ck_breathe" /> Respiração 2 min</label>
+              <label class="tag"><input type="checkbox" class="ck" data-key="ck_caf" /> Sem cafeína 6h</label>
+            </div>
+            <p class="mini" style="margin-top:10px">
+              Dica: se o alojamento for barulhento, “blindagem” (máscara + tampão) costuma valer mais que qualquer método avançado.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- COCHILO -->
+      <div class="section" id="sec_cochilo">
+        <div class="h2">Cochilos estratégicos</div>
+        <p class="lead">Sestas curtas podem recuperar vigilância e tempo de reação sem te deixar grogue.</p>
+
+        <div class="cards">
+          <div class="card two">
+            <h3>Escolha um modo</h3>
+            <div class="row">
+              <div style="flex:1; min-width:180px">
+                <label for="napMode">Tipo de cochilo</label>
+                <select id="napMode">
+                  <option value="15">Power nap (15 min)</option>
+                  <option value="25">Power nap (25 min)</option>
+                  <option value="30">Power nap (30 min)</option>
+                </select>
+              </div>
+              <div style="flex:1; min-width:180px">
+                <label for="napBuffer">Tempo para adormecer (min)</label>
+                <select id="napBuffer">
+                  <option value="5">5</option>
+                  <option value="8">8</option>
+                  <option value="10">10</option>
+                  <option value="12">12</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="timer">
+              <div class="timebig" id="napClock">00:00</div>
+              <button id="napStart">Iniciar</button>
+              <button id="napPause">Pausar</button>
+              <button id="napStop">Parar</button>
+              <span class="mini" id="napHint"></span>
+            </div>
+
+            <div class="notice" style="margin-top:14px">
+              <strong>Protocolo simples:</strong> deite, máscara, tampão se tiver, alarme duplo (celular + relógio), e ao acordar: água + 2 minutos de caminhada.
+            </div>
+          </div>
+
+          <div class="card two">
+            <h3>Quando cochilar</h3>
+            <ul class="list">
+              <li>Antes de uma janela de alta demanda, quando houver previsibilidade.</li>
+              <li>Após ocorrência noturna, se houver oportunidade segura.</li>
+              <li>Evitar cochilos longos no fim do turno se isso atrapalhar o sono principal.</li>
+            </ul>
+            <div class="hr"></div>
+            <h3>Inércia do sono</h3>
+            <p class="muted">
+              Acordar pesado acontece mais quando o cochilo entra em sono profundo. Por isso 15 a 30 minutos costuma ser o “ponto doce”.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- TREINO -->
+      <div class="section" id="sec_treino">
+        <div class="h2">Treino quando dormiu mal</div>
+        <p class="lead">O foco é manter consistência sem pagar a conta em lesão, erro técnico ou exaustão.</p>
+
+        <div class="cards">
+          <div class="card two">
+            <h3>Gerador de sessão adaptada</h3>
+
+            <div class="row">
+              <div style="flex:1; min-width:200px">
+                <label for="trainSleep">Quanto você dormiu?</label>
+                <select id="trainSleep">
+                  <option value="7">≥ 7h (normal)</option>
+                  <option value="6">5h a 6h59 (reduzir)</option>
+                  <option value="4">&lt; 5h (recuperação)</option>
+                </select>
+              </div>
+              <div style="flex:1; min-width:200px">
+                <label for="trainGoal">Meta do dia</label>
+                <select id="trainGoal">
+                  <option value="forca">Força</option>
+                  <option value="cond">Condicionamento</option>
+                  <option value="tecnica">Técnica e habilidade</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row" style="margin-top:10px">
+              <div style="flex:1; min-width:200px">
+                <label for="trainTime">Tempo disponível (min)</label>
+                <select id="trainTime">
+                  <option value="20">20</option>
+                  <option value="30">30</option>
+                  <option value="40">40</option>
+                  <option value="60">60</option>
+                </select>
+              </div>
+              <div style="flex:1; min-width:200px">
+                <label for="trainEquip">Equipamento</label>
+                <select id="trainEquip">
+                  <option value="academia">Academia</option>
+                  <option value="peso_corpo">Peso do corpo</option>
+                  <option value="livre">Peso livre (halter, kettlebell)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+            <button id="btnPlan">Gerar plano</button>
+            <div id="planOut" style="margin-top:12px"></div>
+          </div>
+
+          <div class="card two">
+            <h3>Princípios (sem drama)</h3>
+            <ul class="list">
+              <li>Quanto pior o sono, mais foco em técnica, mobilidade, coordenação e recuperação.</li>
+              <li>Evite “PR” e falha muscular quando o sono estiver ruim. Seu sistema nervoso já está devendo.</li>
+              <li>Se o serviço estiver puxado, reduza ainda mais. Fadiga soma, não negocia.</li>
+            </ul>
+            <div class="notice" style="margin-top:12px">
+              <strong>Sinal de parar:</strong> perda de coordenação, irritabilidade intensa, tontura, dor articular aguda, ou sensação de que o treino está te “desligando”.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RESPIRAÇÃO -->
+      <div class="section" id="sec_respiro">
+        <div class="h2">Respiração e relaxamento</div>
+        <p class="lead">Protocolos curtos para baixar ativação, facilitar o sono e melhorar recuperação.</p>
+
+        <div class="cards">
+          <div class="card two">
+            <h3>Escolha um protocolo</h3>
+            <div class="row">
+              <div style="flex:1; min-width:220px">
+                <label for="breathPick">Protocolo</label>
+                <select id="breathPick">
+                  <option value="box">Respiração quadrada (4 4 4 4), 3 min</option>
+                  <option value="phys">Suspiro fisiológico (2 inspirações + expira longa), 2 min</option>
+                  <option value="478">4 7 8, 4 min</option>
+                  <option value="pmr">Relaxamento muscular progressivo, 6 min</option>
+                </select>
+              </div>
+              <div style="flex:1; min-width:220px">
+                <label for="breathRounds">Duração</label>
+                <select id="breathRounds">
+                  <option value="2">curta</option>
+                  <option value="3" selected>média</option>
+                  <option value="4">longa</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="timer">
+              <div class="timebig" id="breathClock">00:00</div>
+              <button id="breathStart">Iniciar</button>
+              <button id="breathPause">Pausar</button>
+              <button id="breathStop">Parar</button>
+              <span class="mini" id="breathHint"></span>
+            </div>
+
+            <div class="notice" style="margin-top:14px">
+              <strong>Nota prática:</strong> se você estiver muito acelerado, comece pelo Suspiro fisiológico por 60 a 120 segundos e depois migre para 4 7 8.
+            </div>
+          </div>
+
+          <div class="card two">
+            <h3>Guia escrito (para usar offline)</h3>
+            <div class="card" style="margin:0; padding:12px">
+              <p class="muted">
+                Respiração quadrada: inspire 4, segure 4, expire 4, segure 4. Repita.
+                <br/>Suspiro fisiológico: inspire, faça uma segunda inspiração curta por cima, expire longo. Repita.
+                <br/>4 7 8: inspire 4, segure 7, expire 8. Repita.
+                <br/>Relaxamento progressivo: contraia e relaxe grupos musculares, dos pés ao rosto, sem dor.
+              </p>
+            </div>
+            <p class="mini" style="margin-top:10px">
+              Se houver tontura, pare e respire normalmente. O objetivo é regular, não “forçar”.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CAFEÍNA -->
+      <div class="section" id="sec_cafeina">
+        <div class="h2">Cafeína: ferramenta, não muleta</div>
+        <p class="lead">Use para manter vigilância quando necessário, sem sabotar o sono depois.</p>
+
+        <div class="cards">
+          <div class="card two">
+            <h3>Calculadora de corte</h3>
+            <p class="muted">Dica prática do manual: evitar cafeína nas 6 horas que antecedem o sono.</p>
+
+            <div class="row" style="margin-top:10px">
+              <div style="flex:1; min-width:220px">
+                <label for="bedTime">Horário em que pretende dormir</label>
+                <input id="bedTime" type="time" />
+              </div>
+              <div style="flex:1; min-width:220px">
+                <label for="cutHours">Horas sem cafeína</label>
+                <select id="cutHours">
+                  <option value="6" selected>6</option>
+                  <option value="8">8</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+            <button id="btnCut">Calcular horário limite</button>
+            <div id="cutOut" style="margin-top:12px"></div>
+          </div>
+
+          <div class="card two">
+            <h3>Regras simples</h3>
+            <ul class="list">
+              <li>Baixa dose e cedo tende a ajudar mais do que “dose cavalar” tarde.</li>
+              <li>Se for cochilar, evite cafeína logo antes (a menos que use “coffee nap”: cafeína + cochilo de 15 min).</li>
+              <li>Se você precisa de cafeína tarde todos os dias, isso geralmente é sinal de déficit crônico de sono.</li>
+            </ul>
+            <div class="notice" style="margin-top:12px">
+              <strong>Segurança:</strong> se houver palpitação, ansiedade intensa ou hipertensão não controlada, converse com o serviço de saúde sobre consumo.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DIÁRIO -->
+      <div class="section" id="sec_log">
+        <div class="h2">Diário simples de 7 dias</div>
+        <p class="lead">A melhor maneira de descobrir o padrão é registrar o mínimo necessário, por poucos dias.</p>
+
+        <div class="cards">
+          <div class="card">
+            <h3>Registro</h3>
+            <table class="table" id="logTable">
+              <thead>
+                <tr>
+                  <th class="nowrap">Dia</th>
+                  <th class="nowrap">Horas</th>
+                  <th>Qualidade (0 a 10)</th>
+                  <th>Despertares</th>
+                  <th>Demanda</th>
+                  <th>Observações</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+
+            <div class="hr"></div>
+            <button id="btnFillWeek">Preencher com datas desta semana</button>
+            <button id="btnAnalyze">Analisar semana</button>
+            <div id="weekOut" style="margin-top:12px"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- INSTRUTOR -->
+      <div class="section" id="sec_instrutor">
+        <div class="h2">Para instrutores do CECAF</div>
+        <p class="lead">
+          Sugestões para incorporar sono e recuperação como eixo transversal, sem aumentar burocracia.
+        </p>
+
+        <div class="cards">
+          <div class="card two">
+            <h3>Roteiro de instrução (25 a 35 min)</h3>
+            <ol class="list">
+              <li>5 min: por que sono impacta segurança e performance.</li>
+              <li>8 min: sinais de fadiga, riscos e erros comuns em tarefas críticas.</li>
+              <li>10 min: higiene do sono + cochilo estratégico + cafeína com corte.</li>
+              <li>8 min: ajuste de treino em 3 níveis (verde, amarelo, vermelho).</li>
+              <li>4 min: protocolo de respiração para “desligar” e dormir melhor.</li>
+            </ol>
+          </div>
+
+          <div class="card two">
+            <h3>Checklist de turma</h3>
+            <ul class="list">
+              <li>Aplicar Autoavaliação antes de sessões intensas.</li>
+              <li>Incentivar Diário de 7 dias em semanas de alta carga.</li>
+              <li>Orientar ajuste de volume conforme sono e demanda.</li>
+              <li>Padronizar uso de cochilos estratégicos quando houver janela.</li>
+            </ul>
+            <div class="notice" style="margin-top:12px">
+              <strong>Mensagem cultural:</strong> recuperação não é “fraqueza”, é gestão de risco e prolongamento da vida operacional.
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Notas para o QR Code</h3>
+            <p class="muted">
+              Este manual pode ser publicado como página estática (intranet, Drive, GitHub Pages, hospedagem institucional).
+              Ao publicar, gere um QR Code apontando para o endereço do manual e cole no material impresso.
+            </p>
+            <div class="row" style="margin-top:10px">
+              <div style="flex:1; min-width:240px">
+                <label for="hostUrl">URL do manual (quando publicado)</label>
+                <input id="hostUrl" placeholder="Ex.: https://..." />
+              </div>
+              <div style="flex:1; min-width:240px">
+                <label>Texto para legenda do QR Code</label>
+                <input id="qrCaption" placeholder="Manual interativo: Sono e Desempenho (CECAF)" />
+              </div>
+            </div>
+            <div class="row" style="margin-top:10px">
+              <button id="btnCopyQrText">Copiar texto de QR (para gerador)</button>
+              <span class="mini" id="qrCopyMsg"></span>
+            </div>
+            <p class="mini" style="margin-top:10px">
+              Este arquivo não gera QR automaticamente para funcionar offline. Ele te dá o texto pronto para colar em qualquer gerador de QR.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Referência de escopo do manual (do seu trabalho)</h3>
+            <p class="muted">
+              O próprio trabalho prevê o manual interativo com foco em higiene do sono, adaptações de treino e técnicas de respiração e relaxamento, com acesso via QR Code.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </section>
+  </div>
+
+  <div class="wrap foot">
+    <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:space-between">
+      <span>Versão local, dados salvos neste navegador (localStorage).</span>
+      <span class="pill">Atualize e personalize para o CBMDF e o CECAF</span>
+    </div>
+  </div>
+</main>
+
+<script>
+(function(){
+  const $ = (q, el=document) => el.querySelector(q);
+  const $$ = (q, el=document) => Array.from(el.querySelectorAll(q));
+
+  // NAV
+  const navItems = $$(".navitem");
+  navItems.forEach(btn => btn.addEventListener("click", () => {
+    navItems.forEach(b=>b.classList.remove("active"));
+    btn.classList.add("active");
+    const target = btn.dataset.target;
+    $$(".section").forEach(s=>s.classList.remove("active"));
+    $("#"+target).classList.add("active");
+    window.scrollTo({top:0, behavior:"smooth"});
+  }));
+
+  // STORAGE HELPERS
+  const storeKey = "manualSonoCECAF_v1";
+  const state = JSON.parse(localStorage.getItem(storeKey) || "{}");
+  const save = () => {
+    localStorage.setItem(storeKey, JSON.stringify(state));
+    $("#saveStatePill").textContent = "Salvo automaticamente";
+    setTimeout(()=>$("#saveStatePill").textContent="Salvo automaticamente", 300);
+  };
+  const bindInput = (id, parser=(v)=>v) => {
+    const el = $("#"+id);
+    if(!el) return;
+    if(state[id] !== undefined){
+      el.value = state[id];
+    }
+    el.addEventListener("input", () => {
+      state[id] = parser(el.value);
+      save();
+    });
+  };
+
+  // Bind key fields
+  ["sleepHours","wakeCount","dayDemand","pain","stress","caffeineLate",
+   "napMode","napBuffer",
+   "trainSleep","trainGoal","trainTime","trainEquip",
+   "breathPick","breathRounds",
+   "bedTime","cutHours",
+   "hostUrl","qrCaption"
+  ].forEach(id => bindInput(id));
+
+  // Checkboxes in higiene
+  $$(".ck").forEach(ck=>{
+    const k = ck.dataset.key;
+    ck.checked = !!state[k];
+    ck.addEventListener("change", ()=>{
+      state[k] = ck.checked;
+      save();
+    });
+  });
+
+  // AUTO SCORE
+  $("#btnScore").addEventListener("click", ()=>{
+    const h = parseFloat($("#sleepHours").value || "0");
+    const w = parseInt($("#wakeCount").value || "0", 10);
+    const demand = parseInt($("#dayDemand").value, 10);
+    const pain = parseInt($("#pain").value, 10);
+    const stress = parseInt($("#stress").value, 10);
+    const caf = parseInt($("#caffeineLate").value, 10);
+
+    // Score: hours dominate, but fragmentation and context add.
+    let score = 0;
+    if(h >= 7) score += 0;
+    else if(h >= 6) score += 2;
+    else if(h >= 5) score += 4;
+    else score += 6;
+
+    if(w >= 5) score += 2;
+    else if(w >= 3) score += 1;
+
+    score += demand;         // 0..2
+    score += pain;           // 0..2
+    score += stress;         // 0..2
+    score += caf ? 1 : 0;    // 0..1
+
+    // Map to label
+    let tagClass="ok", label="Baixo risco", advice=[];
+    if(score >= 9){ tagClass="danger"; label="Alto risco"; }
+    else if(score >= 5){ tagClass="warn"; label="Risco moderado"; }
+
+    if(tagClass==="ok"){
+      advice = [
+        "Treino normal, mantendo técnica.",
+        "Planeje horário de dormir e ambiente.",
+        "Use o Diário de 7 dias se o padrão estiver instável."
+      ];
+    } else if(tagClass==="warn"){
+      advice = [
+        "Reduza volume ou intensidade do treino hoje.",
+        "Inclua 15 a 25 min de cochilo se houver janela segura.",
+        "Faça 2 a 4 min de respiração guiada antes de deitar."
+      ];
+    } else {
+      advice = [
+        "Evite treino pesado e esforço máximo.",
+        "Priorize mobilidade, técnica, caminhada leve, recuperação.",
+        "Atenção redobrada em direção, altura, elétrica e tomada de decisão rápida."
+      ];
+    }
+
+    state.autoScore = {h,w,demand,pain,stress,caf,score,label,tagClass,ts: Date.now()};
+    save();
+
+    $("#scoreOut").innerHTML = `
+      <div class="row" style="align-items:center; gap:10px">
+        <span class="tag ${tagClass}">${label}</span>
+        <span class="mini">Pontuação: <strong>${score}</strong> (quanto maior, maior o risco)</span>
+      </div>
+      <div class="hr"></div>
+      <ul class="list">
+        ${advice.map(x=>`<li>${x}</li>`).join("")}
+      </ul>
+    `;
+  });
+
+  // NAP TIMER
+  let napT=null, napLeft=0, napRunning=false;
+  const fmt = (s)=>{
+    const m = Math.floor(s/60), r=s%60;
+    return String(m).padStart(2,"0")+":"+String(r).padStart(2,"0");
+  };
+  const napRender = ()=>{
+    $("#napClock").textContent = fmt(napLeft);
+  };
+  const napBeep = ()=>{
+    try{
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      const o = ctx.createOscillator();
+      const g = ctx.createGain();
+      o.type="sine"; o.frequency.value=880;
+      g.gain.value=0.05;
+      o.connect(g); g.connect(ctx.destination);
+      o.start();
+      setTimeout(()=>{ o.stop(); ctx.close(); }, 600);
+    }catch(e){}
+  };
+  const napStopAll = ()=>{
+    napRunning=false;
+    if(napT){ clearInterval(napT); napT=null; }
+    $("#napHint").textContent = "";
+  };
+  $("#napStart").addEventListener("click", ()=>{
+    const nap = parseInt($("#napMode").value,10);
+    const buf = parseInt($("#napBuffer").value,10);
+    if(!napRunning && napLeft===0){
+      napLeft = (nap+buf)*60;
+      napRender();
+      $("#napHint").textContent = "Inclui buffer para adormecer. Ao acordar: água + 2 min caminhando.";
+    }
+    if(napRunning) return;
+    napRunning=true;
+    napT = setInterval(()=>{
+      if(napLeft<=0){
+        napStopAll();
+        napBeep(); napBeep(); // double
+        alert("Cochilo finalizado. Levante devagar, água e 2 minutos de caminhada.");
+        return;
+      }
+      napLeft -= 1;
+      napRender();
+    },1000);
+  });
+  $("#napPause").addEventListener("click", ()=>{
+    napRunning=false;
+    if(napT){ clearInterval(napT); napT=null; }
+    $("#napHint").textContent = "Pausado.";
+  });
+  $("#napStop").addEventListener("click", ()=>{
+    napStopAll();
+    napLeft=0; napRender();
+  });
+
+  // TRAIN PLAN
+  const planBlock = (title, items)=>`
+    <div class="card" style="margin:0; padding:12px">
+      <h3 style="margin:0 0 8px">${title}</h3>
+      <ul class="list">${items.map(x=>`<li>${x}</li>`).join("")}</ul>
+    </div>
+  `;
+  $("#btnPlan").addEventListener("click", ()=>{
+    const s = $("#trainSleep").value;
+    const goal = $("#trainGoal").value;
+    const t = parseInt($("#trainTime").value,10);
+    const eq = $("#trainEquip").value;
+
+    let tag="ok", label="Sessão normal", blocks=[];
+    if(s==="6"){ tag="warn"; label="Sessão ajustada (sono reduzido)"; }
+    if(s==="4"){ tag="danger"; label="Sessão de recuperação (sono muito baixo)"; }
+
+    // Warmup always
+    blocks.push(planBlock("Aquecimento (6 a 8 min)", [
+      "Mobilidade dinâmica: quadril, tornozelo, coluna torácica.",
+      "Ativação leve: ponte de glúteo + prancha + agachamento com pausa.",
+      "2 minutos de caminhada ou bike leve."
+    ]));
+
+    const timeMain = Math.max(8, t - 12);
+
+    if(tag==="ok"){
+      if(goal==="forca"){
+        blocks.push(planBlock(`Parte principal (aprox. ${timeMain} min)`, [
+          eq==="academia" ? "2 a 4 exercícios básicos (empurrar, puxar, agachar, levantar), 3 a 5 séries moderadas." : "Circuito de força: flexão, remada, agachamento, levantamento terra com peso livre (se houver), 3 a 5 voltas.",
+          "Evite falha em todas as séries. Deixe 1 a 2 repetições na reserva.",
+          "Finalização: core e estabilização por 4 a 6 minutos."
+        ]));
+      } else if(goal==="cond"){
+        blocks.push(planBlock(`Parte principal (aprox. ${timeMain} min)`, [
+          "Intervalado moderado: 6 a 10 blocos de 30 a 60 s com recuperação igual.",
+          "Manter técnica limpa e respiração controlada.",
+          "Finalização: alongamento leve 3 a 4 minutos."
+        ]));
+      } else {
+        blocks.push(planBlock(`Parte principal (aprox. ${timeMain} min)`, [
+          "Técnica: padrões de movimento, coordenação, agilidade leve, manuseio de equipamento (se aplicável).",
+          "Ritmo confortável. Priorize precisão.",
+          "Finalização: respiração 2 minutos."
+        ]));
+      }
+    }
+
+    if(tag==="warn"){
+      // reduce volume/intensity
+      if(goal==="forca"){
+        blocks.push(planBlock(`Parte principal (aprox. ${timeMain} min)`, [
+          "Reduza carga e volume: 2 a 3 exercícios, 2 a 3 séries, esforço moderado.",
+          "Velocidade de movimento sob controle, sem explosões máximas.",
+          "Inclua mais descanso entre séries."
+        ]));
+      } else if(goal==="cond"){
+        blocks.push(planBlock(`Parte principal (aprox. ${timeMain} min)`, [
+          "Zona moderada: 12 a 20 min contínuos (caminhada rápida, bike, remo) OU intervalos leves (20 s ON, 40 s OFF).",
+          "Objetivo: suar e sair melhor do que entrou, não “se destruir”."
+        ]));
+      } else {
+        blocks.push(planBlock(`Parte principal (aprox. ${timeMain} min)`, [
+          "Técnica e mobilidade: 15 a 25 min de padrões básicos e alongamentos ativos.",
+          "Trabalho de core e estabilidade (leve)."
+        ]));
+      }
+      blocks.push(planBlock("Recuperação (3 a 5 min)", [
+        "Respiração 4 7 8 (2 min) OU alongamento leve.",
+        "Hidratação e refeição simples rica em proteína."
+      ]));
+    }
+
+    if(tag==="danger"){
+      blocks.push(planBlock(`Parte principal (aprox. ${timeMain} min)`, [
+        "Recuperação ativa: caminhada leve, mobilidade, liberação leve (sem dor).",
+        "Técnica muito leve (se fizer sentido), sem carga alta.",
+        "Se a demanda do serviço for alta, considere descanso completo."
+      ]));
+      blocks.push(planBlock("Reforço de segurança", [
+        "Evite direção prolongada se estiver sonolento.",
+        "Evite altura, elétrica e tarefas com alto risco sem dupla checagem.",
+        "Se possível, cochilo de 15 a 25 min antes de tarefas críticas."
+      ]));
+    }
+
+    state.trainPlan = {s,goal,t,eq,tag,label,blocks,ts:Date.now()};
+    save();
+
+    $("#planOut").innerHTML = `
+      <div class="row" style="align-items:center; gap:10px">
+        <span class="tag ${tag}">${label}</span>
+        <span class="mini">Tempo: ${t} min, equipamento: ${eq.replace("_"," ")}</span>
+      </div>
+      <div class="hr"></div>
+      <div class="cards" style="grid-template-columns: repeat(12,1fr)">
+        ${blocks.map((b,i)=>`<div class="card" style="grid-column: span 12">${b}</div>`).join("")}
+      </div>
+    `;
+  });
+
+  // BREATH TIMER (guided by text hints, not audio)
+  let brT=null, brLeft=0, brRunning=false;
+  const brRender=()=>{$("#breathClock").textContent=fmt(brLeft);};
+  const breathScript = (mode)=>{
+    if(mode==="box") return {baseMin:3, hint:"Inspire 4, segure 4, expire 4, segure 4. Repita em ritmo confortável."};
+    if(mode==="phys") return {baseMin:2, hint:"Inspire, faça uma segunda inspiração curta por cima, expire longo. Repita."};
+    if(mode==="478") return {baseMin:4, hint:"Inspire 4, segure 7, expire 8. Repita (sem forçar)."};
+    return {baseMin:6, hint:"Contraia e relaxe: pés, pernas, glúteos, abdômen, costas, mãos, braços, rosto. Sem dor."};
+  };
+  const brStopAll=()=>{
+    brRunning=false;
+    if(brT){ clearInterval(brT); brT=null; }
+    $("#breathHint").textContent="";
+  };
+  $("#breathStart").addEventListener("click", ()=>{
+    const mode = $("#breathPick").value;
+    const rounds = parseInt($("#breathRounds").value,10);
+    const cfg = breathScript(mode);
+    const total = cfg.baseMin * rounds;
+    if(!brRunning && brLeft===0){
+      brLeft = total*60;
+      brRender();
+      $("#breathHint").textContent = cfg.hint + " Duração total: " + total + " min.";
+    }
+    if(brRunning) return;
+    brRunning=true;
+    brT=setInterval(()=>{
+      if(brLeft<=0){
+        brStopAll();
+        napBeep();
+        alert("Protocolo finalizado. Observe como o corpo ficou e siga com a rotina de sono.");
+        return;
+      }
+      brLeft -= 1;
+      brRender();
+    },1000);
+  });
+  $("#breathPause").addEventListener("click", ()=>{
+    brRunning=false;
+    if(brT){ clearInterval(brT); brT=null; }
+    $("#breathHint").textContent = "Pausado.";
+  });
+  $("#breathStop").addEventListener("click", ()=>{
+    brStopAll();
+    brLeft=0; brRender();
+  });
+
+  // Caffeine cutoff calculator
+  const parseTime = (t)=>{
+    const [hh,mm] = t.split(":").map(x=>parseInt(x,10));
+    return hh*60+mm;
+  };
+  const fmtTime = (m)=>{
+    m = (m + 24*60)%(24*60);
+    const hh = Math.floor(m/60), mm=m%60;
+    return String(hh).padStart(2,"0")+":"+String(mm).padStart(2,"0");
+  };
+  $("#btnCut").addEventListener("click", ()=>{
+    const bt = $("#bedTime").value;
+    const h = parseInt($("#cutHours").value,10);
+    if(!bt){ $("#cutOut").innerHTML = `<span class="tag warn">Preencha o horário de dormir</span>`; return; }
+    const mins = parseTime(bt) - h*60;
+    const lim = fmtTime(mins);
+    state.caffeineCut = {bt,h,lim,ts:Date.now()};
+    save();
+    $("#cutOut").innerHTML = `
+      <div class="row" style="align-items:center; gap:10px">
+        <span class="tag ok">Horário limite: ${lim}</span>
+        <span class="mini">Regra: evite cafeína nas ${h}h antes de deitar.</span>
+      </div>
+    `;
+  });
+
+  // WEEK LOG
+  const tbody = $("#logTable tbody");
+  const mkRow = (i, label)=>{
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td class="nowrap">${label}</td>
+      <td><input data-log="${i}:hours" type="number" step="0.25" min="0" max="12" placeholder="Ex.: 6.5"></td>
+      <td><input data-log="${i}:qual" type="number" step="1" min="0" max="10" placeholder="0 a 10"></td>
+      <td><input data-log="${i}:wake" type="number" step="1" min="0" max="20" placeholder="Ex.: 2"></td>
+      <td>
+        <select data-log="${i}:dem">
+          <option value="">-</option>
+          <option value="baixa">Baixa</option>
+          <option value="media">Média</option>
+          <option value="alta">Alta</option>
+        </select>
+      </td>
+      <td><input data-log="${i}:obs" type="text" placeholder="Ocorrência noturna, cafeína tarde, dor, etc"></td>
+    `;
+    return tr;
+  };
+
+  const ensureLog = ()=>{
+    if(!state.weekLog) state.weekLog = Array.from({length:7}, ()=>({day:"",hours:"",qual:"",wake:"",dem:"",obs:""}));
+  };
+  const renderLog = ()=>{
+    ensureLog();
+    tbody.innerHTML="";
+    state.weekLog.forEach((d,i)=>{
+      tbody.appendChild(mkRow(i, d.day || ("Dia "+(i+1))));
+    });
+    // populate and bind
+    $$("[data-log]").forEach(el=>{
+      const [idx, key] = el.dataset.log.split(":");
+      const i = parseInt(idx,10);
+      if(el.tagName==="SELECT"){
+        el.value = state.weekLog[i][key] || "";
+        el.addEventListener("change", ()=>{
+          state.weekLog[i][key] = el.value;
+          save();
+        });
+      } else {
+        el.value = state.weekLog[i][key] || "";
+        el.addEventListener("input", ()=>{
+          state.weekLog[i][key] = el.value;
+          save();
+        });
+      }
+    });
+  };
+  renderLog();
+
+  $("#btnFillWeek").addEventListener("click", ()=>{
+    ensureLog();
+    const today = new Date();
+    // build labels from today backwards to fill 7 days
+    const days = ["Dom","Seg","Ter","Qua","Qui","Sex","Sáb"];
+    for(let i=0;i<7;i++){
+      const d = new Date(today);
+      d.setDate(today.getDate() - (6-i));
+      const label = `${days[d.getDay()]} ${String(d.getDate()).padStart(2,"0")}/${String(d.getMonth()+1).padStart(2,"0")}`;
+      state.weekLog[i].day = label;
+    }
+    save();
+    renderLog();
+  });
+
+  $("#btnAnalyze").addEventListener("click", ()=>{
+    ensureLog();
+    const hs = state.weekLog.map(x=>parseFloat(x.hours||"0")).filter(x=>!isNaN(x));
+    const qs = state.weekLog.map(x=>parseFloat(x.qual||"0")).filter(x=>!isNaN(x));
+    const ws = state.weekLog.map(x=>parseInt(x.wake||"0",10)).filter(x=>!isNaN(x));
+
+    const avg = (arr)=> arr.length ? (arr.reduce((a,b)=>a+b,0)/arr.length) : 0;
+    const avgH = avg(hs);
+    const avgQ = avg(qs);
+    const avgW = avg(ws);
+
+    let tag="ok", label="Padrão bom";
+    if(avgH < 6 || avgQ < 6) { tag="warn"; label="Padrão irregular"; }
+    if(avgH < 5 || avgQ < 5) { tag="danger"; label="Déficit relevante"; }
+
+    const tips = [];
+    if(avgH < 7) tips.push("Aumente oportunidades de sono ou use cochilos estratégicos.");
+    if(avgW >= 3) tips.push("Sono fragmentado: priorize ambiente (escuro e silêncio) e rotina curta de desaceleração.");
+    tips.push("Em dias com menos sono, ajuste treino para reduzir risco de lesão.");
+    tips.push("Use corte de cafeína e protocolo de respiração para acelerar início do sono.");
+
+    state.weekSummary = {avgH,avgQ,avgW,tag,label,ts:Date.now()};
+    save();
+
+    $("#weekOut").innerHTML = `
+      <div class="row" style="align-items:center; gap:10px">
+        <span class="tag ${tag}">${label}</span>
+        <span class="mini">Média de horas: <strong>${avgH.toFixed(2)}</strong>, qualidade: <strong>${avgQ.toFixed(1)}</strong>, despertares: <strong>${avgW.toFixed(1)}</strong></span>
+      </div>
+      <div class="hr"></div>
+      <ul class="list">${tips.map(t=>`<li>${t}</li>`).join("")}</ul>
+    `;
+  });
+
+  // QR text copy
+  $("#btnCopyQrText").addEventListener("click", async ()=>{
+    const url = ($("#hostUrl").value||"").trim();
+    const cap = ($("#qrCaption").value||"").trim() || "Manual interativo: Sono e Desempenho (CECAF)";
+    const text = url ? url : cap;
+    try{
+      await navigator.clipboard.writeText(text);
+      $("#qrCopyMsg").textContent = "Copiado. Cole no gerador de QR.";
+    }catch(e){
+      $("#qrCopyMsg").textContent = "Não foi possível copiar. Selecione e copie manualmente: " + text;
+    }
+  });
+
+  // EXPORT CSV
+  const toCSV = (rows)=>{
+    const esc = (v)=>('"'+String(v??"").replaceAll('"','""')+'"');
+    const headers = Object.keys(rows[0]||{});
+    const lines = [headers.map(esc).join(",")];
+    rows.forEach(r=>lines.push(headers.map(h=>esc(r[h])).join(",")));
+    return lines.join("\n");
+  };
+
+  $("#btnExport").addEventListener("click", ()=>{
+    ensureLog();
+    const out = {
+      exportedAt: new Date().toISOString(),
+      autoScore: state.autoScore || null,
+      caffeineCut: state.caffeineCut || null,
+      weekSummary: state.weekSummary || null
+    };
+    const rows = state.weekLog.map((d,i)=>({
+      dia: d.day || ("Dia "+(i+1)),
+      horas: d.hours,
+      qualidade: d.qual,
+      despertares: d.wake,
+      demanda: d.dem,
+      observacoes: d.obs
+    }));
+    const csv = toCSV(rows);
+    const blob = new Blob([csv], {type:"text/csv;charset=utf-8"});
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "diario_sono_7dias.csv";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+
+    // Also export summary JSON
+    const blob2 = new Blob([JSON.stringify(out,null,2)], {type:"application/json;charset=utf-8"});
+    const a2 = document.createElement("a");
+    a2.href = URL.createObjectURL(blob2);
+    a2.download = "resumo_manual_sono.json";
+    document.body.appendChild(a2);
+    a2.click();
+    a2.remove();
+  });
+
+  // RESET
+  $("#btnReset").addEventListener("click", ()=>{
+    if(!confirm("Isso vai apagar tudo que foi salvo neste navegador. Continuar?")) return;
+    localStorage.removeItem(storeKey);
+    location.reload();
+  });
+
+  // Restore outputs if present (optional)
+  if(state.autoScore){
+    $("#sleepHours").value = state.sleepHours ?? "";
+    $("#wakeCount").value = state.wakeCount ?? "";
+  }
+})();
+</script>
+</body>
+</html>
